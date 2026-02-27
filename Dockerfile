@@ -23,20 +23,23 @@ RUN <<EOF
     done
 EOF
 
-COPY --chmod=755 <<EOF /bin/entrypoint.sh
+COPY --chmod=755 <<'EOF' /bin/entrypoint.sh
 #!/usr/bin/env bash
     set -euo pipefail
-    : "\${BRANCH:=main}"
+    : "${BRANCH:=main}"
 
-    echo "Checking out \$BRANCH from moergo-sc/zmk" >&2
+    echo "Checking out $BRANCH from moergo-sc/zmk" >&2
     cd /src
     git fetch origin
-    git checkout -q --detach "\$BRANCH"
+    git checkout -q --detach "$BRANCH"
 
     echo 'Building Go60 firmware' >&2
     cd /config
     nix-build ./config --arg firmware 'import /src/default.nix {}' -j2 -o /tmp/combined --show-trace
-    install -o "\$UID" -g "\$GID" /tmp/combined/go60.uf2 ./go60.uf2
+    
+    # Note: Bash overwrites $UID with the actual user (0/root). 
+    # If you want host permissions, use different ENV names like HOST_UID.
+    install -o "$UID" -g "$GID" /tmp/combined/go60.uf2 ./go60.uf2
 EOF
 
 ENTRYPOINT ["/bin/entrypoint.sh"]
