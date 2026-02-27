@@ -166,8 +166,6 @@
 
 /* To deal with the situation where there is no Lower layer, to keep &lower happy */
 
-#ifndef LAYER_Lower
-
 #define LAYER_Lower 0
 
 #
@@ -299,7 +297,6 @@ endif {
 
 / {
     behaviors {
-        ZMK_TD_LAYER(lower, LAYER_Lower)
     };
 };
 
@@ -702,8 +699,6 @@ endif {
     behaviors {
 
         // Layer tap dance behaviors
-
-        ZMK_TD_LAYER(td_LAYER_Keypad, 12)
 
         // AutoShift Helper - &AS main macro is chained to &AS_HT hold tap and &AS_Shifted macro. For faster typists, it is recommended to decrease the tapping-term-ms value. A suggested value is 135 ms.
         // More: https://github.com/nickcoutsos/keymap-editor/wiki/Autoshift-using-ZMK-behaviors
