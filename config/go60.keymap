@@ -166,17 +166,13 @@
 
 /* To deal with the situation where there is no Lower layer, to keep &lower happy */
 
+
 #ifndef LAYER_Lower
-
 #define LAYER_Lower 0
+#endif
 
-#
-
-endif {
-    /
-
+/ {
     /* Generated input processors */
-
     input_processors {
         zip_click_to_right_click_mapper: zip_click_to_right_click_mapper {
             compatible = "zmk,input-processor-code-mapper";
@@ -186,6 +182,7 @@ endif {
         };
     };
 };
+
 
 /* Custom Device-tree */
 /* Input Listeners */
