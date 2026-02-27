@@ -166,13 +166,17 @@
 
 /* To deal with the situation where there is no Lower layer, to keep &lower happy */
 
-
 #ifndef LAYER_Lower
-#define LAYER_Lower 0
-#endif
 
-/ {
+#define LAYER_Lower 0
+
+#
+
+endif {
+    /
+
     /* Generated input processors */
+
     input_processors {
         zip_click_to_right_click_mapper: zip_click_to_right_click_mapper {
             compatible = "zmk,input-processor-code-mapper";
@@ -182,7 +186,6 @@
         };
     };
 };
-
 
 /* Custom Device-tree */
 /* Input Listeners */
@@ -1328,9 +1331,9 @@
         layer_Autoshift {
             bindings = <
 &AS_v1_TKZ EQUAL      &AS_v1_TKZ N1  &AS_v1_TKZ N2  &AS_v1_TKZ N3  &AS_v1_TKZ N4  &AS_v1_TKZ N5                                                  &AS_v1_TKZ N6  &AS_v1_TKZ N7  &AS_v1_TKZ N8     &AS_v1_TKZ N9   &AS_v1_TKZ N0    &AS_v1_TKZ MINUS
-&trans                &AS_v1_TKZ Q   &AS_v1_TKZ W   &AS_v1_TKZ E   &AS_v1_TKZ R   &AS_v1_TKZ T                                                   &AS_v1_TKZ Y   &AS_v1_TKZ U   &AS_v1_TKZ I      &AS_v1_TKZ O    &AS_v1_TKZ P     &AS_v1_TKZ BSLH
-&trans                &AS_v1_TKZ A   &AS_v1_TKZ S   &AS_v1_TKZ D   &AS_v1_TKZ F   &AS_v1_TKZ G                                                   &AS_v1_TKZ H   &AS_v1_TKZ J   &AS_v1_TKZ K      &AS_v1_TKZ L    &AS_v1_TKZ SEMI  &AS_v1_TKZ SQT
-&magic LAYER_Magic 0  &AS_v1_TKZ Z   &AS_v1_TKZ X   &AS_v1_TKZ C   &AS_v1_TKZ V   &AS_v1_TKZ B                                                   &AS_v1_TKZ N   &AS_v1_TKZ M   &AS_v1_TKZ COMMA  &AS_v1_TKZ DOT  &AS_v1_TKZ FSLH  &trans
+&trans                &AS_v1_TKZ Q   &AS_v1_TKZ W   &AS_v1_TKZ F   &AS_v1_TKZ P   &AS_v1_TKZ B                                                   &AS_v1_TKZ J   &AS_v1_TKZ L   &AS_v1_TKZ U      &AS_v1_TKZ Y    &AS_v1_TKZ SEMI  &AS_v1_TKZ BSLH
+&trans                &AS_v1_TKZ A   &AS_v1_TKZ R   &AS_v1_TKZ S   &AS_v1_TKZ T   &AS_v1_TKZ G                                                   &AS_v1_TKZ M   &AS_v1_TKZ N   &AS_v1_TKZ E      &AS_v1_TKZ I    &AS_v1_TKZ O     &AS_v1_TKZ APOS
+&magic LAYER_Magic 0  &AS_v1_TKZ Z   &AS_v1_TKZ X   &AS_v1_TKZ C   &AS_v1_TKZ D   &AS_v1_TKZ V                                                   &AS_v1_TKZ K   &AS_v1_TKZ H   &AS_v1_TKZ COMMA  &AS_v1_TKZ DOT  &AS_v1_TKZ FSLH  &trans
                                      &trans         &trans         &trans                                                                                       &trans         &trans            &trans
                                                                                                  &trans  &trans  &trans  &trans  &trans  &trans
 >;
