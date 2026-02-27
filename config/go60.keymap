@@ -1284,7 +1284,15 @@ endif {
             key-positions = <POS_RH_C4R1 POS_RH_C4R2>;
             bindings = <&kp F9>;
             layers = <LAYER_HRM_macOS LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
-        };
+        };left_bracket {
+         bindings = <&kp LEFT_BRACKET>;
+         key-positions = <15 14>;};right_bracket {
+         bindings = <&kp RIGHT_BRACKET>;
+         key-positions = <20 21>;};left_paren {
+         bindings = <&kp LEFT_PARENTHESIS>;
+         key-positions = <16 15>;};right_paren {
+         bindings = <&kp RIGHT_PARENTHESIS>;
+         key-positions = <20 19>;};
     };
 };
 
