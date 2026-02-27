@@ -1417,11 +1417,11 @@ endif {
 
         layer_Cursor {
             bindings = <
-&none      &kp ESC    &kp INS                        &kp LS(TAB)                    &kp DEL    &none                                                                                                                  &none      &none        &kp K_APP      &kp PAUSE_BREAK  &kp SLCK   &none
-&kp CAPS   &kp RET    &kp LS(LG(Z))                  &kp LG(Z)                      &kp BSPC   &kp LG(X)                                                                                                              &kp LG(X)  &kp LS(TAB)  &kp LG(Z)      &kp LS(LG(Z))    &kp TAB    &kp PSCRN
-&sk LSHFT  &kp LCTRL  &kp LALT                       &kp LGUI                       &kp LSHFT  &kp LG(C)                                                                                                              &kp LG(C)  &kp LEFT     &kp UP         &kp DOWN         &kp RIGHT  &sk RSHFT
-&kp LG(L)  &kp LG(A)  &cur_SELECT_LINE_macos_v1_TKZ  &cur_SELECT_WORD_macos_v1_TKZ  &kp LG(F)  &kp LG(V)                                                                                                              &kp LG(V)  &kp HOME     &kp PG_UP      &kp PG_DN        &kp END    &kp LG(L)
-                      &none                          &kp LS(LG(G))                  &kp LG(G)                                                                                                                                    &kp LG(F)    &kp LS(LG(G))  &kp LG(G)
+&none      &kp ESC    &kp INS                        &kp LS(TAB)                    &kp DEL    &none                                                                                                                  &none      &none           &kp K_APP         &kp PAUSE_BREAK  &kp SLCK        &none
+&kp CAPS   &kp RET    &kp LS(LG(Z))                  &kp LG(Z)                      &kp BSPC   &kp LG(X)                                                                                                              &kp LG(X)  &kp LS(TAB)     &kp LG(UP_ARROW)  &kp LS(LG(Z))    &kp TAB         &kp PSCRN
+&sk LSHFT  &kp LCTRL  &kp LALT                       &kp LGUI                       &kp LSHFT  &kp LG(C)                                                                                                              &kp LG(C)  &kp LEFT_ARROW  &kp DOWN_ARROW    &kp RIGHT        &sk LEFT_SHIFT  &trans
+&kp LG(L)  &kp LG(A)  &cur_SELECT_LINE_macos_v1_TKZ  &cur_SELECT_WORD_macos_v1_TKZ  &kp LG(F)  &kp LG(V)                                                                                                              &kp LG(V)  &kp HOME        &kp PG_UP         &kp PG_DN        &kp END         &kp LG(L)
+                      &none                          &kp LS(LG(G))                  &kp LG(G)                                                                                                                                    &kp LG(F)       &kp LS(LG(G))     &kp LG(G)
                                                                                                           &none  &none  &none  &cur_SELECT_NONE_v1_TKZ  &cur_EXTEND_LINE_macos_v1_TKZ  &cur_EXTEND_WORD_macos_v1_TKZ
 >;
         };
