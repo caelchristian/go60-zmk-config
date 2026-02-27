@@ -164,6 +164,24 @@
 #define LAYER_Gaming 18
 #define LAYER_Magic 19
 
+/* To deal with the situation where there is no Lower layer, to keep &lower happy */
+
+
+#ifndef LAYER_Lower
+#define LAYER_Lower 0
+#endif
+
+/ {
+    /* Generated input processors */
+    input_processors {
+        zip_click_to_right_click_mapper: zip_click_to_right_click_mapper {
+            compatible = "zmk,input-processor-code-mapper";
+            #input-processor-cells = <0>;
+            type = <INPUT_EV_KEY>;
+            map = <INPUT_BTN_0 INPUT_BTN_1>;
+        };
+    };
+};
 
 /* Custom Device-tree */
 /* Input Listeners */
@@ -276,7 +294,9 @@
 /* System behavior and macros */
 
 / {
-    behaviors { };
+    behaviors {
+        ZMK_TD_LAYER(lower, LAYER_Lower)
+    };
 };
 
 / {
@@ -678,6 +698,8 @@
     behaviors {
 
         // Layer tap dance behaviors
+
+        ZMK_TD_LAYER(td_LAYER_Keypad, 12)
 
         // AutoShift Helper - &AS main macro is chained to &AS_HT hold tap and &AS_Shifted macro. For faster typists, it is recommended to decrease the tapping-term-ms value. A suggested value is 135 ms.
         // More: https://github.com/nickcoutsos/keymap-editor/wiki/Autoshift-using-ZMK-behaviors
