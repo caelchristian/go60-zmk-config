@@ -315,7 +315,8 @@ endif {
 };
 
 / {
-#ifdef BT_DISC_CMD
+    #ifdef BT_DISC_CMD
+
     behaviors {
         bt_0: bt_0 {
             compatible = "zmk,behavior-tap-dance";
@@ -324,6 +325,7 @@ endif {
             tapping-term-ms = <200>;
             bindings = <&bt_select_0>, <&bt BT_DISC 0>;
         };
+
         bt_1: bt_1 {
             compatible = "zmk,behavior-tap-dance";
             label = "BT_1";
@@ -331,6 +333,7 @@ endif {
             tapping-term-ms = <200>;
             bindings = <&bt_select_1>, <&bt BT_DISC 1>;
         };
+
         bt_2: bt_2 {
             compatible = "zmk,behavior-tap-dance";
             label = "BT_2";
@@ -338,6 +341,7 @@ endif {
             tapping-term-ms = <200>;
             bindings = <&bt_select_2>, <&bt BT_DISC 2>;
         };
+
         bt_3: bt_3 {
             compatible = "zmk,behavior-tap-dance";
             label = "BT_3";
@@ -346,6 +350,7 @@ endif {
             bindings = <&bt_select_3>, <&bt BT_DISC 3>;
         };
     };
+
     macros {
         bt_select_0: bt_select_0 {
             label = "BT_SELECT_0";
@@ -353,18 +358,21 @@ endif {
             #binding-cells = <0>;
             bindings = <&out OUT_BLE &bt BT_SEL 0>;
         };
+
         bt_select_1: bt_select_1 {
             label = "BT_SELECT_1";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&out OUT_BLE &bt BT_SEL 1>;
         };
+
         bt_select_2: bt_select_2 {
             label = "BT_SELECT_2";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&out OUT_BLE &bt BT_SEL 2>;
         };
+
         bt_select_3: bt_select_3 {
             label = "BT_SELECT_3";
             compatible = "zmk,behavior-macro";
@@ -372,7 +380,9 @@ endif {
             bindings = <&out OUT_BLE &bt BT_SEL 3>;
         };
     };
-#else
+
+    #else
+
     macros {
         bt_0: bt_0 {
             label = "BT_0";
@@ -380,18 +390,21 @@ endif {
             #binding-cells = <0>;
             bindings = <&out OUT_BLE &bt BT_SEL 0>;
         };
+
         bt_1: bt_1 {
             label = "BT_1";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&out OUT_BLE &bt BT_SEL 1>;
         };
+
         bt_2: bt_2 {
             label = "BT_2";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&out OUT_BLE &bt BT_SEL 2>;
         };
+
         bt_3: bt_3 {
             label = "BT_3";
             compatible = "zmk,behavior-macro";
@@ -399,875 +412,1110 @@ endif {
             bindings = <&out OUT_BLE &bt BT_SEL 3>;
         };
     };
-#endif
-};
 
-/ {
-    behaviors {
-        magic: magic {
-            compatible = "zmk,behavior-hold-tap";
-            label = "MAGIC_HOLD_TAP";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <200>;
-            bindings = <&mo>, <&rgb_ug_status_macro>;
+    #endif = };
+
+    / {
+        behaviors {
+            magic: magic {
+                compatible = "zmk,behavior-hold-tap";
+                label = "MAGIC_HOLD_TAP";
+                #binding-cells = <2>;
+                flavor = "tap-preferred";
+                tapping-term-ms = <200>;
+                bindings = <&mo>, <&rgb_ug_status_macro>;
+            };
         };
     };
-};
 
+    /* Custom Defined Behaviors */
 
-/* Custom Defined Behaviors */
-/ {
+    / {
+    };
 
-};
+    /* Automatically generated macro definitions */
 
-/* Automatically generated macro definitions */
-/ {
-    macros {
+    / {
+        macros {
+            // AutoShift Helper- &AS main macro is chained to &AS_HT hold tap and &AS_Shifted macro - TailorKey
 
-        // AutoShift Helper- &AS main macro is chained to &AS_HT hold tap and &AS_Shifted macro - TailorKey
-        AS_Shifted_v1_TKZ: AS_Shifted_v1_TKZ {
-            label = "&AS_SHIFTED_V1_TKZ";
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            tap-ms = <0>;
-            wait-ms = <0>;
-            bindings = <&macro_press>,<&kp LSHFT>,<&macro_tap>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER>,<&macro_release>,<&kp LSHFT>;
-        };
+            AS_Shifted_v1_TKZ: AS_Shifted_v1_TKZ {
+                label = "&AS_SHIFTED_V1_TKZ";
+                compatible = "zmk,behavior-macro-one-param";
+                #binding-cells = <1>;
+                tap-ms = <0>;
+                wait-ms = <0>;
+                bindings =
+                    <&macro_press>,
+                    <&kp LSHFT>,
+                    <&macro_tap>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER>,
+                    <&macro_release>,
+                    <&kp LSHFT>;
+            };
 
-        // AutoShift (Assign &AS to a Key) - &AS main macro is chained to &AS_HT hold tap and &AS_Shifted macro - TailorKey
-        AS_v1_TKZ: AS_v1_TKZ {
-            label = "&AS_V1_TKZ";
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            tap-ms = <0>;
-            wait-ms = <0>;
-            bindings = <&macro_press>,<&macro_param_1to1 &macro_param_1to2 &AS_HT_v2_TKZ MACRO_PLACEHOLDER MACRO_PLACEHOLDER>,<&macro_pause_for_release>,<&macro_release>,<&macro_param_1to1 &macro_param_1to2 &AS_HT_v2_TKZ MACRO_PLACEHOLDER MACRO_PLACEHOLDER>;
-        };
+            // AutoShift (Assign &AS to a Key) - &AS main macro is chained to &AS_HT hold tap and &AS_Shifted macro - TailorKey
 
-        // Cursor Layer - Extent Line (seq) - TailorKey
-        cur_EXTEND_LINE_macos_v1_TKZ: cur_EXTEND_LINE_macos_v1_TKZ {
-            label = "&CUR_EXTEND_LINE_MACOS_V1_TKZ";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            tap-ms = <1>;
-            wait-ms = <1>;
-            bindings = <&kp LG(LS(RIGHT))>;
-        };
+            AS_v1_TKZ: AS_v1_TKZ {
+                label = "&AS_V1_TKZ";
+                compatible = "zmk,behavior-macro-one-param";
+                #binding-cells = <1>;
+                tap-ms = <0>;
+                wait-ms = <0>;
+                bindings =
+                    <&macro_press>,
+                    <&macro_param_1to1 &macro_param_1to2 &AS_HT_v2_TKZ MACRO_PLACEHOLDER MACRO_PLACEHOLDER>,
+                    <&macro_pause_for_release>,
+                    <&macro_release>,
+                    <&macro_param_1to1 &macro_param_1to2 &AS_HT_v2_TKZ MACRO_PLACEHOLDER MACRO_PLACEHOLDER>;
+            };
 
-        // Cursor Layer - Extend Word (seq) - TailorKey
-        cur_EXTEND_WORD_macos_v1_TKZ: cur_EXTEND_WORD_macos_v1_TKZ {
-            label = "&CUR_EXTEND_WORD_MACOS_V1_TKZ";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            tap-ms = <1>;
-            wait-ms = <1>;
-            bindings = <&kp LA(LS(RIGHT))>;
-        };
+            // Cursor Layer - Extent Line (seq) - TailorKey
 
-        // Cursor Layer macos - Select Line (seq) - TailorKey
-        cur_SELECT_LINE_macos_v1_TKZ: cur_SELECT_LINE_macos_v1_TKZ {
-            label = "&CUR_SELECT_LINE_MACOS_V1_TKZ";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            tap-ms = <1>;
-            wait-ms = <1>;
-            bindings = <&kp LG(LEFT) &kp LG(LS(RIGHT))>;
-        };
+            cur_EXTEND_LINE_macos_v1_TKZ: cur_EXTEND_LINE_macos_v1_TKZ {
+                label = "&CUR_EXTEND_LINE_MACOS_V1_TKZ";
+                compatible = "zmk,behavior-macro";
+                #binding-cells = <0>;
+                tap-ms = <1>;
+                wait-ms = <1>;
+                bindings = <&kp LG(LS(RIGHT))>;
+            };
 
-        // Cursor Layer - Select None (seq) - TailorKey
-        cur_SELECT_NONE_v1_TKZ: cur_SELECT_NONE_v1_TKZ {
-            label = "&CUR_SELECT_NONE_V1_TKZ";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            tap-ms = <1>;
-            wait-ms = <1>;
-            bindings = <&kp DOWN &kp UP &kp RIGHT &kp LEFT>;
-        };
+            // Cursor Layer - Extend Word (seq) - TailorKey
 
-        // Cursor Layer - Select Word (seq) - TailorKey
-        cur_SELECT_WORD_macos_v1_TKZ: cur_SELECT_WORD_macos_v1_TKZ {
-            label = "&CUR_SELECT_WORD_MACOS_V1_TKZ";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            tap-ms = <1>;
-            wait-ms = <1>;
-            bindings = <&kp LA(LEFT) &kp LA(LS(RIGHT))>;
-        };
+            cur_EXTEND_WORD_macos_v1_TKZ: cur_EXTEND_WORD_macos_v1_TKZ {
+                label = "&CUR_EXTEND_WORD_MACOS_V1_TKZ";
+                compatible = "zmk,behavior-macro";
+                #binding-cells = <0>;
+                tap-ms = <1>;
+                wait-ms = <1>;
+                bindings = <&kp LA(LS(RIGHT))>;
+            };
 
-        // HRM_left_index_hold -> swich layer  - TailorKey
-        HRM_left_index_hold_v1B_TKZ: HRM_left_index_hold_v1B_TKZ {
-            label = "&HRM_LEFT_INDEX_HOLD_V1B_TKZ";
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            tap-ms = <0>;
-            wait-ms = <0>;
-            bindings = <&macro_press>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 5>,<&macro_pause_for_release>,<&macro_release>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 5>;
-        };
+            // Cursor Layer macos - Select Line (seq) - TailorKey
 
-        // HRM_left_index_tap - incl. QWERTY alpha character - TailorKey
-        HRM_left_index_tap_v1B_TKZ: HRM_left_index_tap_v1B_TKZ {
-            label = "&HRM_LEFT_INDEX_TAP_V1B_TKZ";
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            tap-ms = <0>;
-            wait-ms = <0>;
-            bindings = <&macro_release>,<&kp LSHFT &kp RSHFT &kp LALT &kp RALT &kp LCTRL &kp RCTRL &kp LGUI &kp RGUI>,<&macro_tap>,<&kp F>,<&macro_tap>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
-        };
+            cur_SELECT_LINE_macos_v1_TKZ: cur_SELECT_LINE_macos_v1_TKZ {
+                label = "&CUR_SELECT_LINE_MACOS_V1_TKZ";
+                compatible = "zmk,behavior-macro";
+                #binding-cells = <0>;
+                tap-ms = <1>;
+                wait-ms = <1>;
+                bindings = <&kp LG(LEFT) &kp LG(LS(RIGHT))>;
+            };
 
-        // HRM_left_middy_hold -> swich layer - TailorKey
-        HRM_left_middy_hold_v1B_TKZ: HRM_left_middy_hold_v1B_TKZ {
-            label = "&HRM_LEFT_MIDDY_HOLD_V1B_TKZ";
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            tap-ms = <0>;
-            wait-ms = <0>;
-            bindings = <&macro_press>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 4>,<&macro_pause_for_release>,<&macro_release>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 4>;
-        };
+            // Cursor Layer - Select None (seq) - TailorKey
 
-        // HRM_left_middy_tap - incl. QWERTY alpha character - TailorKey
-        HRM_left_middy_tap_v1B_TKZ: HRM_left_middy_tap_v1B_TKZ {
-            label = "&HRM_LEFT_MIDDY_TAP_V1B_TKZ";
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            tap-ms = <0>;
-            wait-ms = <0>;
-            bindings = <&macro_release>,<&kp LSHFT &kp RSHFT &kp LALT &kp RALT &kp LCTRL &kp RCTRL &kp LGUI &kp RGUI>,<&macro_tap>,<&kp D>,<&macro_tap>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
-        };
+            cur_SELECT_NONE_v1_TKZ: cur_SELECT_NONE_v1_TKZ {
+                label = "&CUR_SELECT_NONE_V1_TKZ";
+                compatible = "zmk,behavior-macro";
+                #binding-cells = <0>;
+                tap-ms = <1>;
+                wait-ms = <1>;
+                bindings = <&kp DOWN &kp UP &kp RIGHT &kp LEFT>;
+            };
 
-        // HRM_left_pinky_hold -> swich layer - TailorKey
-        HRM_left_pinky_hold_v1B_TKZ: HRM_left_pinky_hold_v1B_TKZ {
-            label = "&HRM_LEFT_PINKY_HOLD_V1B_TKZ";
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            tap-ms = <0>;
-            wait-ms = <0>;
-            bindings = <&macro_press>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 2>,<&macro_pause_for_release>,<&macro_release>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 2>;
-        };
+            // Cursor Layer - Select Word (seq) - TailorKey
 
-        // HRM_left_pinky_tap - incl. QWERTY alpha character - TailorKey
-        HRM_left_pinky_tap_v1B_TKZ: HRM_left_pinky_tap_v1B_TKZ {
-            label = "&HRM_LEFT_PINKY_TAP_V1B_TKZ";
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            tap-ms = <0>;
-            wait-ms = <0>;
-            bindings = <&macro_release>,<&kp LSHFT &kp RSHFT &kp LALT &kp RALT &kp LCTRL &kp RCTRL &kp LGUI &kp RGUI>,<&macro_tap>,<&kp A>,<&macro_tap>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
-        };
+            cur_SELECT_WORD_macos_v1_TKZ: cur_SELECT_WORD_macos_v1_TKZ {
+                label = "&CUR_SELECT_WORD_MACOS_V1_TKZ";
+                compatible = "zmk,behavior-macro";
+                #binding-cells = <0>;
+                tap-ms = <1>;
+                wait-ms = <1>;
+                bindings = <&kp LA(LEFT) &kp LA(LS(RIGHT))>;
+            };
 
-        // HRM_left_ring_hold -> swich layer - TailorKey
-        HRM_left_ring_hold_v1B_TKZ: HRM_left_ring_hold_v1B_TKZ {
-            label = "&HRM_LEFT_RING_HOLD_V1B_TKZ";
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            tap-ms = <0>;
-            wait-ms = <0>;
-            bindings = <&macro_press>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 3>,<&macro_pause_for_release>,<&macro_release>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 3>;
-        };
+            // HRM_left_index_hold -> swich layer  - TailorKey
 
-        // HRM_left_ring_tap - incl. QWERTY alpha character - TailorKey
-        HRM_left_ring_tap_v1B_TKZ: HRM_left_ring_tap_v1B_TKZ {
-            label = "&HRM_LEFT_RING_TAP_V1B_TKZ";
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            tap-ms = <0>;
-            wait-ms = <0>;
-            bindings = <&macro_release>,<&kp LSHFT &kp RSHFT &kp LALT &kp RALT &kp LCTRL &kp RCTRL &kp LGUI &kp RGUI>,<&macro_tap>,<&kp S>,<&macro_tap>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
-        };
+            HRM_left_index_hold_v1B_TKZ: HRM_left_index_hold_v1B_TKZ {
+                label = "&HRM_LEFT_INDEX_HOLD_V1B_TKZ";
+                compatible = "zmk,behavior-macro-one-param";
+                #binding-cells = <1>;
+                tap-ms = <0>;
+                wait-ms = <0>;
+                bindings =
+                    <&macro_press>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 5>,
+                    <&macro_pause_for_release>,
+                    <&macro_release>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 5>;
+            };
 
-        // HRM_right_index_hold -> swich layer - TailorKey
-        HRM_right_index_hold_v1B_TKZ: HRM_right_index_hold_v1B_TKZ {
-            label = "&HRM_RIGHT_INDEX_HOLD_V1B_TKZ";
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            tap-ms = <0>;
-            wait-ms = <0>;
-            bindings = <&macro_press>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 9>,<&macro_pause_for_release>,<&macro_release>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 9>;
-        };
+            // HRM_left_index_tap - incl. QWERTY alpha character - TailorKey
 
-        // HRM_right_index_tap - incl. QWERTY alpha character - TailorKey
-        HRM_right_index_tap_v1B_TKZ: HRM_right_index_tap_v1B_TKZ {
-            label = "&HRM_RIGHT_INDEX_TAP_V1B_TKZ";
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            tap-ms = <0>;
-            wait-ms = <0>;
-            bindings = <&macro_release>,<&kp LSHFT &kp RSHFT &kp LALT &kp RALT &kp LCTRL &kp RCTRL &kp LGUI &kp RGUI>,<&macro_tap>,<&kp J>,<&macro_tap>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
-        };
+            HRM_left_index_tap_v1B_TKZ: HRM_left_index_tap_v1B_TKZ {
+                label = "&HRM_LEFT_INDEX_TAP_V1B_TKZ";
+                compatible = "zmk,behavior-macro-one-param";
+                #binding-cells = <1>;
+                tap-ms = <0>;
+                wait-ms = <0>;
+                bindings =
+                    <&macro_release>,
+                    <&kp LSHFT &kp RSHFT &kp LALT &kp RALT &kp LCTRL &kp RCTRL &kp LGUI &kp RGUI>,
+                    <&macro_tap>,
+                    <&kp F>,
+                    <&macro_tap>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+            };
 
-        // HRM_right_middy_hold -> swich layer - TailorKey
-        HRM_right_middy_hold_v1B_TKZ: HRM_right_middy_hold_v1B_TKZ {
-            label = "&HRM_RIGHT_MIDDY_HOLD_V1B_TKZ";
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            tap-ms = <0>;
-            wait-ms = <0>;
-            bindings = <&macro_press>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 8>,<&macro_pause_for_release>,<&macro_release>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 8>;
-        };
+            // HRM_left_middy_hold -> swich layer - TailorKey
 
-        // HRM_right_middy_tap - incl. QWERTY alpha character - TailorKey
-        HRM_right_middy_tap_v1B_TKZ: HRM_right_middy_tap_v1B_TKZ {
-            label = "&HRM_RIGHT_MIDDY_TAP_V1B_TKZ";
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            tap-ms = <0>;
-            wait-ms = <0>;
-            bindings = <&macro_release>,<&kp LSHFT &kp RSHFT &kp LALT &kp RALT &kp LCTRL &kp RCTRL &kp LGUI &kp RGUI>,<&macro_tap>,<&kp K>,<&macro_tap>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
-        };
+            HRM_left_middy_hold_v1B_TKZ: HRM_left_middy_hold_v1B_TKZ {
+                label = "&HRM_LEFT_MIDDY_HOLD_V1B_TKZ";
+                compatible = "zmk,behavior-macro-one-param";
+                #binding-cells = <1>;
+                tap-ms = <0>;
+                wait-ms = <0>;
+                bindings =
+                    <&macro_press>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 4>,
+                    <&macro_pause_for_release>,
+                    <&macro_release>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 4>;
+            };
 
-        // HRM_right_pinky_hold -> swich layer - TailorKey
-        HRM_right_pinky_hold_v1B_TKZ: HRM_right_pinky_hold_v1B_TKZ {
-            label = "&HRM_RIGHT_PINKY_HOLD_V1B_TKZ";
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            tap-ms = <0>;
-            wait-ms = <0>;
-            bindings = <&macro_press>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 6>,<&macro_pause_for_release>,<&macro_release>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 6>;
-        };
+            // HRM_left_middy_tap - incl. QWERTY alpha character - TailorKey
 
-        // HRM_right_pinky_tap - incl. QWERTY alpha character - TailorKey
-        HRM_right_pinky_tap_v1B_TKZ: HRM_right_pinky_tap_v1B_TKZ {
-            label = "&HRM_RIGHT_PINKY_TAP_V1B_TKZ";
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            tap-ms = <0>;
-            wait-ms = <0>;
-            bindings = <&macro_release>,<&kp LSHFT &kp RSHFT &kp LALT &kp RALT &kp LCTRL &kp RCTRL &kp LGUI &kp RGUI>,<&macro_tap>,<&kp SEMI>,<&macro_tap>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
-        };
+            HRM_left_middy_tap_v1B_TKZ: HRM_left_middy_tap_v1B_TKZ {
+                label = "&HRM_LEFT_MIDDY_TAP_V1B_TKZ";
+                compatible = "zmk,behavior-macro-one-param";
+                #binding-cells = <1>;
+                tap-ms = <0>;
+                wait-ms = <0>;
+                bindings =
+                    <&macro_release>,
+                    <&kp LSHFT &kp RSHFT &kp LALT &kp RALT &kp LCTRL &kp RCTRL &kp LGUI &kp RGUI>,
+                    <&macro_tap>,
+                    <&kp D>,
+                    <&macro_tap>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+            };
 
-        // HRM_right_ring_hold -> swich layer - TailorKey
-        HRM_right_ring_hold_v1B_TKZ: HRM_right_ring_hold_v1B_TKZ {
-            label = "&HRM_RIGHT_RING_HOLD_V1B_TKZ";
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            tap-ms = <0>;
-            wait-ms = <0>;
-            bindings = <&macro_press>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 7>,<&macro_pause_for_release>,<&macro_release>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 7>;
-        };
+            // HRM_left_pinky_hold -> swich layer - TailorKey
 
-        // HRM_right_ring_tap - incl. QWERTY alpha character - TailorKey
-        HRM_right_ring_tap_v1B_TKZ: HRM_right_ring_tap_v1B_TKZ {
-            label = "&HRM_RIGHT_RING_TAP_V1B_TKZ";
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            tap-ms = <0>;
-            wait-ms = <0>;
-            bindings = <&macro_release>,<&kp LSHFT &kp RSHFT &kp LALT &kp RALT &kp LCTRL &kp RCTRL &kp LGUI &kp RGUI>,<&macro_tap>,<&kp L>,<&macro_tap>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
-        };
+            HRM_left_pinky_hold_v1B_TKZ: HRM_left_pinky_hold_v1B_TKZ {
+                label = "&HRM_LEFT_PINKY_HOLD_V1B_TKZ";
+                compatible = "zmk,behavior-macro-one-param";
+                #binding-cells = <1>;
+                tap-ms = <0>;
+                wait-ms = <0>;
+                bindings =
+                    <&macro_press>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 2>,
+                    <&macro_pause_for_release>,
+                    <&macro_release>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 2>;
+            };
 
-        // mod_tab_switcher_chord -  TailorKey
-        mod_tab_chord_v2_TKZ: mod_tab_chord_v2_TKZ {
-            label = "&MOD_TAB_CHORD_V2_TKZ";
-            compatible = "zmk,behavior-macro-two-param";
-            #binding-cells = <2>;
-            tap-ms = <0>;
-            wait-ms = <0>;
-            bindings = <&macro_press>,<&macro_param_2to1 &mo MACRO_PLACEHOLDER>,<&macro_press>,<&macro_param_1to1 &mod_tab_v1_TKZ MACRO_PLACEHOLDER>,<&macro_pause_for_release>,<&macro_release>,<&macro_param_1to1 &mod_tab_v1_TKZ MACRO_PLACEHOLDER>,<&macro_release>,<&macro_param_2to1 &mo MACRO_PLACEHOLDER>;
-        };
+            // HRM_left_pinky_tap - incl. QWERTY alpha character - TailorKey
 
-        // mod_tab_switcher - TailorKey
-        //
-        //
-        mod_tab_v1_TKZ: mod_tab_v1_TKZ {
-            label = "&MOD_TAB_V1_TKZ";
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            tap-ms = <0>;
-            wait-ms = <0>;
-            bindings = <&macro_press>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER>,<&macro_tap>,<&kp TAB>,<&macro_pause_for_release>,<&macro_release>,<&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
-        };
+            HRM_left_pinky_tap_v1B_TKZ: HRM_left_pinky_tap_v1B_TKZ {
+                label = "&HRM_LEFT_PINKY_TAP_V1B_TKZ";
+                compatible = "zmk,behavior-macro-one-param";
+                #binding-cells = <1>;
+                tap-ms = <0>;
+                wait-ms = <0>;
+                bindings =
+                    <&macro_release>,
+                    <&kp LSHFT &kp RSHFT &kp LALT &kp RALT &kp LCTRL &kp RCTRL &kp LGUI &kp RGUI>,
+                    <&macro_tap>,
+                    <&kp A>,
+                    <&macro_tap>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+            };
 
-        // macro string1 sample - Magic Layer F1 - Text output sample macro 1 "¡Hola!" - TailorKey
-        mstr1_v1_TKZ: mstr1_v1_TKZ {
-            label = "&MSTR1_V1_TKZ";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press>,<&kp RALT>,<&macro_tap>,<&kp KP_N0 &kp KP_N1 &kp KP_N6 &kp KP_N1>,<&macro_release>,<&kp RALT>,<&macro_press>,<&kp LSHFT>,<&macro_tap>,<&kp H>,<&macro_release>,<&kp LSHFT>,<&macro_tap>,<&kp O &kp L &kp A &kp LS(N1) &kp SPACE &kp RET>;
-        };
+            // HRM_left_ring_hold -> swich layer - TailorKey
 
-        // Symbol layer dot dot
-        symb_dotdot_v1_TKZ: symb_dotdot_v1_TKZ {
-            label = "&SYMB_DOTDOT_V1_TKZ";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            tap-ms = <0>;
-            wait-ms = <0>;
-            bindings = <&macro_tap>,<&kp DOT &kp DOT>;
+            HRM_left_ring_hold_v1B_TKZ: HRM_left_ring_hold_v1B_TKZ {
+                label = "&HRM_LEFT_RING_HOLD_V1B_TKZ";
+                compatible = "zmk,behavior-macro-one-param";
+                #binding-cells = <1>;
+                tap-ms = <0>;
+                wait-ms = <0>;
+                bindings =
+                    <&macro_press>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 3>,
+                    <&macro_pause_for_release>,
+                    <&macro_release>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 3>;
+            };
+
+            // HRM_left_ring_tap - incl. QWERTY alpha character - TailorKey
+
+            HRM_left_ring_tap_v1B_TKZ: HRM_left_ring_tap_v1B_TKZ {
+                label = "&HRM_LEFT_RING_TAP_V1B_TKZ";
+                compatible = "zmk,behavior-macro-one-param";
+                #binding-cells = <1>;
+                tap-ms = <0>;
+                wait-ms = <0>;
+                bindings =
+                    <&macro_release>,
+                    <&kp LSHFT &kp RSHFT &kp LALT &kp RALT &kp LCTRL &kp RCTRL &kp LGUI &kp RGUI>,
+                    <&macro_tap>,
+                    <&kp S>,
+                    <&macro_tap>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+            };
+
+            // HRM_right_index_hold -> swich layer - TailorKey
+
+            HRM_right_index_hold_v1B_TKZ: HRM_right_index_hold_v1B_TKZ {
+                label = "&HRM_RIGHT_INDEX_HOLD_V1B_TKZ";
+                compatible = "zmk,behavior-macro-one-param";
+                #binding-cells = <1>;
+                tap-ms = <0>;
+                wait-ms = <0>;
+                bindings =
+                    <&macro_press>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 9>,
+                    <&macro_pause_for_release>,
+                    <&macro_release>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 9>;
+            };
+
+            // HRM_right_index_tap - incl. QWERTY alpha character - TailorKey
+
+            HRM_right_index_tap_v1B_TKZ: HRM_right_index_tap_v1B_TKZ {
+                label = "&HRM_RIGHT_INDEX_TAP_V1B_TKZ";
+                compatible = "zmk,behavior-macro-one-param";
+                #binding-cells = <1>;
+                tap-ms = <0>;
+                wait-ms = <0>;
+                bindings =
+                    <&macro_release>,
+                    <&kp LSHFT &kp RSHFT &kp LALT &kp RALT &kp LCTRL &kp RCTRL &kp LGUI &kp RGUI>,
+                    <&macro_tap>,
+                    <&kp J>,
+                    <&macro_tap>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+            };
+
+            // HRM_right_middy_hold -> swich layer - TailorKey
+
+            HRM_right_middy_hold_v1B_TKZ: HRM_right_middy_hold_v1B_TKZ {
+                label = "&HRM_RIGHT_MIDDY_HOLD_V1B_TKZ";
+                compatible = "zmk,behavior-macro-one-param";
+                #binding-cells = <1>;
+                tap-ms = <0>;
+                wait-ms = <0>;
+                bindings =
+                    <&macro_press>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 8>,
+                    <&macro_pause_for_release>,
+                    <&macro_release>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 8>;
+            };
+
+            // HRM_right_middy_tap - incl. QWERTY alpha character - TailorKey
+
+            HRM_right_middy_tap_v1B_TKZ: HRM_right_middy_tap_v1B_TKZ {
+                label = "&HRM_RIGHT_MIDDY_TAP_V1B_TKZ";
+                compatible = "zmk,behavior-macro-one-param";
+                #binding-cells = <1>;
+                tap-ms = <0>;
+                wait-ms = <0>;
+                bindings =
+                    <&macro_release>,
+                    <&kp LSHFT &kp RSHFT &kp LALT &kp RALT &kp LCTRL &kp RCTRL &kp LGUI &kp RGUI>,
+                    <&macro_tap>,
+                    <&kp K>,
+                    <&macro_tap>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+            };
+
+            // HRM_right_pinky_hold -> swich layer - TailorKey
+
+            HRM_right_pinky_hold_v1B_TKZ: HRM_right_pinky_hold_v1B_TKZ {
+                label = "&HRM_RIGHT_PINKY_HOLD_V1B_TKZ";
+                compatible = "zmk,behavior-macro-one-param";
+                #binding-cells = <1>;
+                tap-ms = <0>;
+                wait-ms = <0>;
+                bindings =
+                    <&macro_press>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 6>,
+                    <&macro_pause_for_release>,
+                    <&macro_release>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 6>;
+            };
+
+            // HRM_right_pinky_tap - incl. QWERTY alpha character - TailorKey
+
+            HRM_right_pinky_tap_v1B_TKZ: HRM_right_pinky_tap_v1B_TKZ {
+                label = "&HRM_RIGHT_PINKY_TAP_V1B_TKZ";
+                compatible = "zmk,behavior-macro-one-param";
+                #binding-cells = <1>;
+                tap-ms = <0>;
+                wait-ms = <0>;
+                bindings =
+                    <&macro_release>,
+                    <&kp LSHFT &kp RSHFT &kp LALT &kp RALT &kp LCTRL &kp RCTRL &kp LGUI &kp RGUI>,
+                    <&macro_tap>,
+                    <&kp SEMI>,
+                    <&macro_tap>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+            };
+
+            // HRM_right_ring_hold -> swich layer - TailorKey
+
+            HRM_right_ring_hold_v1B_TKZ: HRM_right_ring_hold_v1B_TKZ {
+                label = "&HRM_RIGHT_RING_HOLD_V1B_TKZ";
+                compatible = "zmk,behavior-macro-one-param";
+                #binding-cells = <1>;
+                tap-ms = <0>;
+                wait-ms = <0>;
+                bindings =
+                    <&macro_press>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 7>,
+                    <&macro_pause_for_release>,
+                    <&macro_release>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER &mo 7>;
+            };
+
+            // HRM_right_ring_tap - incl. QWERTY alpha character - TailorKey
+
+            HRM_right_ring_tap_v1B_TKZ: HRM_right_ring_tap_v1B_TKZ {
+                label = "&HRM_RIGHT_RING_TAP_V1B_TKZ";
+                compatible = "zmk,behavior-macro-one-param";
+                #binding-cells = <1>;
+                tap-ms = <0>;
+                wait-ms = <0>;
+                bindings =
+                    <&macro_release>,
+                    <&kp LSHFT &kp RSHFT &kp LALT &kp RALT &kp LCTRL &kp RCTRL &kp LGUI &kp RGUI>,
+                    <&macro_tap>,
+                    <&kp L>,
+                    <&macro_tap>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+            };
+
+            // mod_tab_switcher_chord -  TailorKey
+
+            mod_tab_chord_v2_TKZ: mod_tab_chord_v2_TKZ {
+                label = "&MOD_TAB_CHORD_V2_TKZ";
+                compatible = "zmk,behavior-macro-two-param";
+                #binding-cells = <2>;
+                tap-ms = <0>;
+                wait-ms = <0>;
+                bindings =
+                    <&macro_press>,
+                    <&macro_param_2to1 &mo MACRO_PLACEHOLDER>,
+                    <&macro_press>,
+                    <&macro_param_1to1 &mod_tab_v1_TKZ MACRO_PLACEHOLDER>,
+                    <&macro_pause_for_release>,
+                    <&macro_release>,
+                    <&macro_param_1to1 &mod_tab_v1_TKZ MACRO_PLACEHOLDER>,
+                    <&macro_release>,
+                    <&macro_param_2to1 &mo MACRO_PLACEHOLDER>;
+            };
+
+            // mod_tab_switcher - TailorKey
+            //
+            //
+
+            mod_tab_v1_TKZ: mod_tab_v1_TKZ {
+                label = "&MOD_TAB_V1_TKZ";
+                compatible = "zmk,behavior-macro-one-param";
+                #binding-cells = <1>;
+                tap-ms = <0>;
+                wait-ms = <0>;
+                bindings =
+                    <&macro_press>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER>,
+                    <&macro_tap>,
+                    <&kp TAB>,
+                    <&macro_pause_for_release>,
+                    <&macro_release>,
+                    <&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+            };
+
+            // macro string1 sample - Magic Layer F1 - Text output sample macro 1 "¡Hola!" - TailorKey
+
+            mstr1_v1_TKZ: mstr1_v1_TKZ {
+                label = "&MSTR1_V1_TKZ";
+                compatible = "zmk,behavior-macro";
+                #binding-cells = <0>;
+                bindings =
+                    <&macro_press>,
+                    <&kp RALT>,
+                    <&macro_tap>,
+                    <&kp KP_N0 &kp KP_N1 &kp KP_N6 &kp KP_N1>,
+                    <&macro_release>,
+                    <&kp RALT>,
+                    <&macro_press>,
+                    <&kp LSHFT>,
+                    <&macro_tap>,
+                    <&kp H>,
+                    <&macro_release>,
+                    <&kp LSHFT>,
+                    <&macro_tap>,
+                    <&kp O &kp L &kp A &kp LS(N1) &kp SPACE &kp RET>;
+            };
+
+            // Symbol layer dot dot
+
+            symb_dotdot_v1_TKZ: symb_dotdot_v1_TKZ {
+                label = "&SYMB_DOTDOT_V1_TKZ";
+                compatible = "zmk,behavior-macro";
+                #binding-cells = <0>;
+                tap-ms = <0>;
+                wait-ms = <0>;
+                bindings = <&macro_tap>, <&kp DOT &kp DOT>;
+            };
         };
     };
-};
 
-/* Automatically generated behavior definitions */
-/ {
-    behaviors {
+    /* Automatically generated behavior definitions */
 
-        // Layer tap dance behaviors
+    / {
+        behaviors {
+            // Layer tap dance behaviors
 
-        ZMK_TD_LAYER(td_LAYER_Keypad, 12)
+            ZMK_TD_LAYER(td_LAYER_Keypad, 12)
 
-        // AutoShift Helper - &AS main macro is chained to &AS_HT hold tap and &AS_Shifted macro. For faster typists, it is recommended to decrease the tapping-term-ms value. A suggested value is 135 ms.
-        // More: https://github.com/nickcoutsos/keymap-editor/wiki/Autoshift-using-ZMK-behaviors
-        AS_HT_v2_TKZ: AS_HT_v2_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <190>;
-            bindings = <&AS_Shifted_v1_TKZ>, <&kp>;
-            flavor = "tap-preferred";
-        };
+            // AutoShift Helper - &AS main macro is chained to &AS_HT hold tap and &AS_Shifted macro. For faster typists, it is recommended to decrease the tapping-term-ms value. A suggested value is 135 ms.
+            // More: https://github.com/nickcoutsos/keymap-editor/wiki/Autoshift-using-ZMK-behaviors
 
-        // HRM_left_index_middy_bilateral -> &kp - &HRM_left_index_tap - TailorKey
-        HRM_left_index_middy_v1B_TKZ: HRM_left_index_middy_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <190>;
-            bindings = <&kp>, <&HRM_left_index_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <100>;
-            hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
-            hold-trigger-on-release;
-        };
+            AS_HT_v2_TKZ: AS_HT_v2_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <190>;
+                bindings = <&AS_Shifted_v1_TKZ>, <&kp>;
 
-        // HRM_left_index_pinky_bilateral -> &kp - &HRM_left_index_tap - TailorKey
-        HRM_left_index_pinky_v1B_TKZ: HRM_left_index_pinky_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <190>;
-            bindings = <&kp>, <&HRM_left_index_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <100>;
-            hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
-            hold-trigger-on-release;
-        };
+                flavor = "tap-preferred";
+            };
 
-        // HRM_left_index_ring_bilateral -> &kp - &HRM_left_index_tap - TailorKey
-        HRM_left_index_ringv1_TKZ: HRM_left_index_ringv1_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <190>;
-            bindings = <&kp>, <&HRM_left_index_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <100>;
-            hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
-            hold-trigger-on-release;
-        };
+            // HRM_left_index_middy_bilateral -> &kp - &HRM_left_index_tap - TailorKey
 
-        // HRM_left_index_bilateral -> &HRM_left_index_hold -> &kp - TailorKey
-        HRM_left_index_v1B_TKZ: HRM_left_index_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <190>;
-            bindings = <&HRM_left_index_hold_v1B_TKZ>, <&kp>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <100>;
-            hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
-            hold-trigger-on-release;
-        };
+            HRM_left_index_middy_v1B_TKZ: HRM_left_index_middy_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <190>;
+                bindings = <&kp>, <&HRM_left_index_tap_v1B_TKZ>;
 
-        // HRM_left_middy_index_bilateral  -> &kp ->&HRM_left_middy_tap - TailorKey
-        HRM_left_middy_index_v1B_TKZ: HRM_left_middy_index_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <210>;
-            bindings = <&kp>, <&HRM_left_middy_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
-            hold-trigger-on-release;
-        };
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <100>;
+                hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
+                hold-trigger-on-release;
+            };
 
-        // HRM_left_middy_pinky_bilateral -> &kp - &HRM_left_pinky_tap - TailorKey
-        HRM_left_middy_pinky_v1B_TKZ: HRM_left_middy_pinky_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <210>;
-            bindings = <&kp>, <&HRM_left_middy_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
-            hold-trigger-on-release;
-        };
+            // HRM_left_index_pinky_bilateral -> &kp - &HRM_left_index_tap - TailorKey
 
-        // HRM_left_middy_ring_bilateral -> &kp - &HRM_left_middy_tap - TailorKey
-        HRM_left_middy_ring_v1B_TKZ: HRM_left_middy_ring_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <210>;
-            bindings = <&kp>, <&HRM_left_middy_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
-            hold-trigger-on-release;
-        };
+            HRM_left_index_pinky_v1B_TKZ: HRM_left_index_pinky_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <190>;
+                bindings = <&kp>, <&HRM_left_index_tap_v1B_TKZ>;
 
-        // HRM_left_middy_bilateral -> &HRM_left_index_hold -> &kp - TailorKey
-        HRM_left_middy_v1B_TKZ: HRM_left_middy_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <210>;
-            bindings = <&HRM_left_middy_hold_v1B_TKZ>, <&kp>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
-            hold-trigger-on-release;
-        };
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <100>;
+                hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
+                hold-trigger-on-release;
+            };
 
-        // HRM_left_pinky_index_bilateral  -> &kp ->&HRM_left_pinky_tap - TailorKey
-        HRM_left_pinky_index_v1B_TKZ: HRM_left_pinky_index_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <280>;
-            bindings = <&kp>, <&HRM_left_pinky_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
-            hold-trigger-on-release;
-        };
+            // HRM_left_index_ring_bilateral -> &kp - &HRM_left_index_tap - TailorKey
 
-        // HRM_left_pinky_middy_bilateral -> &kp - &HRM_left_pinky_tap - TailorKey
-        HRM_left_pinky_middy_v1B_TKZ: HRM_left_pinky_middy_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <280>;
-            bindings = <&kp>, <&HRM_left_pinky_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
-            hold-trigger-on-release;
-        };
+            HRM_left_index_ringv1_TKZ: HRM_left_index_ringv1_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <190>;
+                bindings = <&kp>, <&HRM_left_index_tap_v1B_TKZ>;
 
-        // HRM_left_pinky_ring_bilateral -> &kp - &HRM_left_pinky_tap - TailorKey
-        HRM_left_pinky_ring_v1B_TKZ: HRM_left_pinky_ring_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <280>;
-            bindings = <&kp>, <&HRM_left_pinky_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
-            hold-trigger-on-release;
-        };
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <100>;
+                hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
+                hold-trigger-on-release;
+            };
 
-        // HRM_left_pinky_bilateral  - &HRM_left_pinky_hold -> &kp - TailorKey
-        HRM_left_pinky_v1B_TKZ: HRM_left_pinky_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <280>;
-            bindings = <&HRM_left_pinky_hold_v1B_TKZ>, <&kp>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
-            hold-trigger-on-release;
-        };
+            // HRM_left_index_bilateral -> &HRM_left_index_hold -> &kp - TailorKey
 
-        // HRM_left_ring_index_bilateral  -> &kp ->&HRM_left_ring_tap - TailorKey
-        HRM_left_ring_index_v1B_TKZ: HRM_left_ring_index_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <240>;
-            bindings = <&kp>, <&HRM_left_ring_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <100>;
-            hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
-            hold-trigger-on-release;
-        };
+            HRM_left_index_v1B_TKZ: HRM_left_index_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <190>;
+                bindings = <&HRM_left_index_hold_v1B_TKZ>, <&kp>;
 
-        // HRM_left_ring_middy_bilateral -> &kp - &HRM_left_ring_tap - TailorKey
-        HRM_left_ring_middy_v1B_TKZ: HRM_left_ring_middy_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <240>;
-            bindings = <&kp>, <&HRM_left_ring_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
-            hold-trigger-on-release;
-        };
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <100>;
+                hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
+                hold-trigger-on-release;
+            };
 
-        // HRM_left_ring_pinky_bilateral -> &kp - &HRM_left_ring_tap - TailorKey
-        HRM_left_ring_pinky_v1B_TKZ: HRM_left_ring_pinky_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <240>;
-            bindings = <&kp>, <&HRM_left_ring_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
-            hold-trigger-on-release;
-        };
+            // HRM_left_middy_index_bilateral  -> &kp ->&HRM_left_middy_tap - TailorKey
 
-        // HRM_left_ring_bilateral  - &HRM_left_ring_hold -> &kp - TailorKey
-        HRM_left_ring_v1B_TKZ: HRM_left_ring_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <240>;
-            bindings = <&HRM_left_ring_hold_v1B_TKZ>, <&kp>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
-            hold-trigger-on-release;
-        };
+            HRM_left_middy_index_v1B_TKZ: HRM_left_middy_index_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <210>;
+                bindings = <&kp>, <&HRM_left_middy_tap_v1B_TKZ>;
 
-        // HRM_right_index_middy_bilateral -> &kp - &HRM_right_index_tap - TailorKey
-        HRM_right_index_middy_v1B_TKZ: HRM_right_index_middy_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <190>;
-            bindings = <&kp>, <&HRM_right_index_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <100>;
-            hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
-            hold-trigger-on-release;
-        };
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
+                hold-trigger-on-release;
+            };
 
-        // HRM_right_index_pinky_bilateral -> &kp - &HRM_right_index_tap - TailorKey
-        HRM_right_index_pinky_v1B_TKZ: HRM_right_index_pinky_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <190>;
-            bindings = <&kp>, <&HRM_right_index_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <100>;
-            hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
-            hold-trigger-on-release;
-        };
+            // HRM_left_middy_pinky_bilateral -> &kp - &HRM_left_pinky_tap - TailorKey
 
-        // HRM_right_index_ring_bilateral -> &kp - &HRM_right_index_tap - TailorKey
-        HRM_right_index_ring_v1B_TKZ: HRM_right_index_ring_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <190>;
-            bindings = <&kp>, <&HRM_right_index_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <100>;
-            hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
-            hold-trigger-on-release;
-        };
+            HRM_left_middy_pinky_v1B_TKZ: HRM_left_middy_pinky_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <210>;
+                bindings = <&kp>, <&HRM_left_middy_tap_v1B_TKZ>;
 
-        // HRM_right_index_bilateral -> &HRM_right_index_hold -> &kp - TailorKey
-        HRM_right_index_v1B_TKZ: HRM_right_index_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <190>;
-            bindings = <&HRM_right_index_hold_v1B_TKZ>, <&kp>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <100>;
-            hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
-            hold-trigger-on-release;
-        };
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
+                hold-trigger-on-release;
+            };
 
-        // HRM_right_middy_index_bilateral  -> &kp ->&HRM_right_middy_tap - TailorKey
-        HRM_right_middy_index_v1B_TKZ: HRM_right_middy_index_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <210>;
-            bindings = <&kp>, <&HRM_right_middy_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
-            hold-trigger-on-release;
-        };
+            // HRM_left_middy_ring_bilateral -> &kp - &HRM_left_middy_tap - TailorKey
 
-        // HRM_right_middy_pinky_bilateral -> &kp - &HRM_right_pinky_tap - TailorKey
-        HRM_right_middy_pinky_v1B_TKZ: HRM_right_middy_pinky_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <210>;
-            bindings = <&kp>, <&HRM_right_middy_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C1R4 POS_LH_C1R3 POS_LH_C1R2 POS_LH_C1R1 POS_LH_C5R1 POS_LH_C5R2 POS_LH_C5R3 POS_LH_C6R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_T1 POS_LH_T2 POS_LH_T3 POS_RH_T1 POS_RH_T2 POS_RH_T3 POS_LH_C2R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C2R4 POS_LH_C2R3 POS_LH_C2R2 POS_LH_C2R1 POS_LH_C3R1 POS_LH_C3R2 POS_LH_C3R3 POS_LH_C4R2 POS_LH_C4R1 POS_LH_C4R3>;
-            hold-trigger-on-release;
-        };
+            HRM_left_middy_ring_v1B_TKZ: HRM_left_middy_ring_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <210>;
+                bindings = <&kp>, <&HRM_left_middy_tap_v1B_TKZ>;
 
-        // HRM_right_middy_ring_bilateral -> &kp - &HRM_right_middy_tap - TailorKey
-        HRM_right_middy_ring_v1B_TKZ: HRM_right_middy_ring_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <210>;
-            bindings = <&kp>, <&HRM_right_middy_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
-            hold-trigger-on-release;
-        };
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
+                hold-trigger-on-release;
+            };
 
-        // HRM_right_middy_bilateral -> &HRM_right_index_hold -> &kp - TailorKey
-        HRM_right_middy_v1B_TKZ: HRM_right_middy_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <210>;
-            bindings = <&HRM_right_middy_hold_v1B_TKZ>, <&kp>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
-            hold-trigger-on-release;
-        };
+            // HRM_left_middy_bilateral -> &HRM_left_index_hold -> &kp - TailorKey
 
-        // HRM_right_pinky_index_bilateral  -> &kp ->&HRM_right_pinky_tap - TailorKey
-        HRM_right_pinky_index_v1B_TKZ: HRM_right_pinky_index_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <260>;
-            bindings = <&kp>, <&HRM_right_pinky_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
-            hold-trigger-on-release;
-        };
+            HRM_left_middy_v1B_TKZ: HRM_left_middy_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <210>;
+                bindings = <&HRM_left_middy_hold_v1B_TKZ>, <&kp>;
 
-        // HRM_right_pinky_middy_bilateral -> &kp - &HRM_right_pinky_tap - TailorKey
-        HRM_right_pinky_middy_v1B_TKZ: HRM_right_pinky_middy_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <260>;
-            bindings = <&kp>, <&HRM_right_pinky_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
-            hold-trigger-on-release;
-        };
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
+                hold-trigger-on-release;
+            };
 
-        // HRM_right_pinky_ring_bilateral -> &kp - &HRM_right_pinky_tap - TailorKey
-        HRM_right_pinky_ring_v1B_TKZ: HRM_right_pinky_ring_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <260>;
-            bindings = <&kp>, <&HRM_right_pinky_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
-            hold-trigger-on-release;
-        };
+            // HRM_left_pinky_index_bilateral  -> &kp ->&HRM_left_pinky_tap - TailorKey
 
-        // HRM_right_pinky_bilateral  - &HRM_right_pinky_hold -> &kp - TailorKey
-        HRM_right_pinky_v1B_TKZ: HRM_right_pinky_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <260>;
-            bindings = <&HRM_right_pinky_hold_v1B_TKZ>, <&kp>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
-            hold-trigger-on-release;
-        };
+            HRM_left_pinky_index_v1B_TKZ: HRM_left_pinky_index_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <280>;
+                bindings = <&kp>, <&HRM_left_pinky_tap_v1B_TKZ>;
 
-        // HRM_right_ring_index_bilateral  -> &kp ->&HRM_right_ring_tap - TailorKey
-        HRM_right_ring_index_v1B_TKZ: HRM_right_ring_index_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <240>;
-            bindings = <&kp>, <&HRM_right_ring_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
-            hold-trigger-on-release;
-        };
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
+                hold-trigger-on-release;
+            };
 
-        // HRM_right_ring_middy_bilateral -> &kp - &HRM_right_ring_tap - TailorKey
-        HRM_right_ring_middy_v1B_TKZ: HRM_right_ring_middy_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <240>;
-            bindings = <&kp>, <&HRM_right_ring_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
-            hold-trigger-on-release;
-        };
+            // HRM_left_pinky_middy_bilateral -> &kp - &HRM_left_pinky_tap - TailorKey
 
-        // HRM_right_ring_pinky_bilateral -> &kp - &HRM_right_ring_tap - TailorKey
-        HRM_right_ring_pinky_v1B_TKZ: HRM_right_ring_pinky_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <240>;
-            bindings = <&kp>, <&HRM_right_ring_tap_v1B_TKZ>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
-            hold-trigger-on-release;
-        };
+            HRM_left_pinky_middy_v1B_TKZ: HRM_left_pinky_middy_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <280>;
+                bindings = <&kp>, <&HRM_left_pinky_tap_v1B_TKZ>;
 
-        // HRM_right_ring_bilateral  - &HRM_right_ring_hold -> &kp - TailorKey
-        HRM_right_ring_v1B_TKZ: HRM_right_ring_v1B_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <240>;
-            bindings = <&HRM_right_ring_hold_v1B_TKZ>, <&kp>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <300>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
-            hold-trigger-on-release;
-        };
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
+                hold-trigger-on-release;
+            };
 
-        // space_layer_access - TailorKey
-        space_v3_TKZ: space_v3_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            bindings = <&mo>, <&kp>;
-            flavor = "balanced";
-            quick-tap-ms = <150>;
-        };
+            // HRM_left_pinky_ring_bilateral -> &kp - &HRM_left_pinky_tap - TailorKey
 
-        // thumb_layer_access - TailorKey
-        thumb_v2_TKZ: thumb_v2_TKZ {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            bindings = <&mo>, <&kp>;
-            flavor = "balanced";
-            quick-tap-ms = <300>;
+            HRM_left_pinky_ring_v1B_TKZ: HRM_left_pinky_ring_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <280>;
+                bindings = <&kp>, <&HRM_left_pinky_tap_v1B_TKZ>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
+                hold-trigger-on-release;
+            };
+
+            // HRM_left_pinky_bilateral  - &HRM_left_pinky_hold -> &kp - TailorKey
+
+            HRM_left_pinky_v1B_TKZ: HRM_left_pinky_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <280>;
+                bindings = <&HRM_left_pinky_hold_v1B_TKZ>, <&kp>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
+                hold-trigger-on-release;
+            };
+
+            // HRM_left_ring_index_bilateral  -> &kp ->&HRM_left_ring_tap - TailorKey
+
+            HRM_left_ring_index_v1B_TKZ: HRM_left_ring_index_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <240>;
+                bindings = <&kp>, <&HRM_left_ring_tap_v1B_TKZ>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <100>;
+                hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
+                hold-trigger-on-release;
+            };
+
+            // HRM_left_ring_middy_bilateral -> &kp - &HRM_left_ring_tap - TailorKey
+
+            HRM_left_ring_middy_v1B_TKZ: HRM_left_ring_middy_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <240>;
+                bindings = <&kp>, <&HRM_left_ring_tap_v1B_TKZ>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
+                hold-trigger-on-release;
+            };
+
+            // HRM_left_ring_pinky_bilateral -> &kp - &HRM_left_ring_tap - TailorKey
+
+            HRM_left_ring_pinky_v1B_TKZ: HRM_left_ring_pinky_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <240>;
+                bindings = <&kp>, <&HRM_left_ring_tap_v1B_TKZ>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
+                hold-trigger-on-release;
+            };
+
+            // HRM_left_ring_bilateral  - &HRM_left_ring_hold -> &kp - TailorKey
+
+            HRM_left_ring_v1B_TKZ: HRM_left_ring_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <240>;
+                bindings = <&HRM_left_ring_hold_v1B_TKZ>, <&kp>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
+                hold-trigger-on-release;
+            };
+
+            // HRM_right_index_middy_bilateral -> &kp - &HRM_right_index_tap - TailorKey
+
+            HRM_right_index_middy_v1B_TKZ: HRM_right_index_middy_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <190>;
+                bindings = <&kp>, <&HRM_right_index_tap_v1B_TKZ>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <100>;
+                hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
+                hold-trigger-on-release;
+            };
+
+            // HRM_right_index_pinky_bilateral -> &kp - &HRM_right_index_tap - TailorKey
+
+            HRM_right_index_pinky_v1B_TKZ: HRM_right_index_pinky_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <190>;
+                bindings = <&kp>, <&HRM_right_index_tap_v1B_TKZ>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <100>;
+                hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
+                hold-trigger-on-release;
+            };
+
+            // HRM_right_index_ring_bilateral -> &kp - &HRM_right_index_tap - TailorKey
+
+            HRM_right_index_ring_v1B_TKZ: HRM_right_index_ring_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <190>;
+                bindings = <&kp>, <&HRM_right_index_tap_v1B_TKZ>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <100>;
+                hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
+                hold-trigger-on-release;
+            };
+
+            // HRM_right_index_bilateral -> &HRM_right_index_hold -> &kp - TailorKey
+
+            HRM_right_index_v1B_TKZ: HRM_right_index_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <190>;
+                bindings = <&HRM_right_index_hold_v1B_TKZ>, <&kp>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <100>;
+                hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
+                hold-trigger-on-release;
+            };
+
+            // HRM_right_middy_index_bilateral  -> &kp ->&HRM_right_middy_tap - TailorKey
+
+            HRM_right_middy_index_v1B_TKZ: HRM_right_middy_index_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <210>;
+                bindings = <&kp>, <&HRM_right_middy_tap_v1B_TKZ>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
+                hold-trigger-on-release;
+            };
+
+            // HRM_right_middy_pinky_bilateral -> &kp - &HRM_right_pinky_tap - TailorKey
+
+            HRM_right_middy_pinky_v1B_TKZ: HRM_right_middy_pinky_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <210>;
+                bindings = <&kp>, <&HRM_right_middy_tap_v1B_TKZ>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C1R4 POS_LH_C1R3 POS_LH_C1R2 POS_LH_C1R1 POS_LH_C5R1 POS_LH_C5R2 POS_LH_C5R3 POS_LH_C6R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_T1 POS_LH_T2 POS_LH_T3 POS_RH_T1 POS_RH_T2 POS_RH_T3 POS_LH_C2R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C2R4 POS_LH_C2R3 POS_LH_C2R2 POS_LH_C2R1 POS_LH_C3R1 POS_LH_C3R2 POS_LH_C3R3 POS_LH_C4R2 POS_LH_C4R1 POS_LH_C4R3>;
+                hold-trigger-on-release;
+            };
+
+            // HRM_right_middy_ring_bilateral -> &kp - &HRM_right_middy_tap - TailorKey
+
+            HRM_right_middy_ring_v1B_TKZ: HRM_right_middy_ring_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <210>;
+                bindings = <&kp>, <&HRM_right_middy_tap_v1B_TKZ>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
+                hold-trigger-on-release;
+            };
+
+            // HRM_right_middy_bilateral -> &HRM_right_index_hold -> &kp - TailorKey
+
+            HRM_right_middy_v1B_TKZ: HRM_right_middy_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <210>;
+                bindings = <&HRM_right_middy_hold_v1B_TKZ>, <&kp>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
+                hold-trigger-on-release;
+            };
+
+            // HRM_right_pinky_index_bilateral  -> &kp ->&HRM_right_pinky_tap - TailorKey
+
+            HRM_right_pinky_index_v1B_TKZ: HRM_right_pinky_index_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <260>;
+                bindings = <&kp>, <&HRM_right_pinky_tap_v1B_TKZ>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
+                hold-trigger-on-release;
+            };
+
+            // HRM_right_pinky_middy_bilateral -> &kp - &HRM_right_pinky_tap - TailorKey
+
+            HRM_right_pinky_middy_v1B_TKZ: HRM_right_pinky_middy_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <260>;
+                bindings = <&kp>, <&HRM_right_pinky_tap_v1B_TKZ>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
+                hold-trigger-on-release;
+            };
+
+            // HRM_right_pinky_ring_bilateral -> &kp - &HRM_right_pinky_tap - TailorKey
+
+            HRM_right_pinky_ring_v1B_TKZ: HRM_right_pinky_ring_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <260>;
+                bindings = <&kp>, <&HRM_right_pinky_tap_v1B_TKZ>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
+                hold-trigger-on-release;
+            };
+
+            // HRM_right_pinky_bilateral  - &HRM_right_pinky_hold -> &kp - TailorKey
+
+            HRM_right_pinky_v1B_TKZ: HRM_right_pinky_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <260>;
+                bindings = <&HRM_right_pinky_hold_v1B_TKZ>, <&kp>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
+                hold-trigger-on-release;
+            };
+
+            // HRM_right_ring_index_bilateral  -> &kp ->&HRM_right_ring_tap - TailorKey
+
+            HRM_right_ring_index_v1B_TKZ: HRM_right_ring_index_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <240>;
+                bindings = <&kp>, <&HRM_right_ring_tap_v1B_TKZ>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
+                hold-trigger-on-release;
+            };
+
+            // HRM_right_ring_middy_bilateral -> &kp - &HRM_right_ring_tap - TailorKey
+
+            HRM_right_ring_middy_v1B_TKZ: HRM_right_ring_middy_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <240>;
+                bindings = <&kp>, <&HRM_right_ring_tap_v1B_TKZ>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
+                hold-trigger-on-release;
+            };
+
+            // HRM_right_ring_pinky_bilateral -> &kp - &HRM_right_ring_tap - TailorKey
+
+            HRM_right_ring_pinky_v1B_TKZ: HRM_right_ring_pinky_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <240>;
+                bindings = <&kp>, <&HRM_right_ring_tap_v1B_TKZ>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
+                hold-trigger-on-release;
+            };
+
+            // HRM_right_ring_bilateral  - &HRM_right_ring_hold -> &kp - TailorKey
+
+            HRM_right_ring_v1B_TKZ: HRM_right_ring_v1B_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <240>;
+                bindings = <&HRM_right_ring_hold_v1B_TKZ>, <&kp>;
+
+                flavor = "tap-preferred";
+                quick-tap-ms = <300>;
+                require-prior-idle-ms = <150>;
+                hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
+                hold-trigger-on-release;
+            };
+
+            // space_layer_access - TailorKey
+
+            space_v3_TKZ: space_v3_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <200>;
+                bindings = <&mo>, <&kp>;
+
+                flavor = "balanced";
+                quick-tap-ms = <150>;
+            };
+
+            // thumb_layer_access - TailorKey
+
+            thumb_v2_TKZ: thumb_v2_TKZ {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <200>;
+                bindings = <&mo>, <&kp>;
+
+                flavor = "balanced";
+                quick-tap-ms = <300>;
+            };
         };
     };
-};
 
-/* Automatically generated combos definitions */
-/ {
-    combos {
-        compatible = "zmk,combos";
+    /* Automatically generated combos definitions */
 
-        // sticky "hyper" modifiers (Win + Alt + Ctrl + Shift) - TailorKey
-        combo_sticky_hyp_rght_v1_TKZ {
-            timeout-ms = <50>;
-            key-positions = <POS_RH_C2R4 POS_RH_C2R5>;
-            bindings = <&sk LG(LA(LC(LSHFT)))>;
-            layers = <0 1>;
+    / {
+        combos {
+            compatible = "zmk,combos";
+
+            // sticky "hyper" modifiers (Win + Alt + Ctrl + Shift) - TailorKey
+
+            combo_sticky_hyp_rght_v1_TKZ {
+                timeout-ms = <50>;
+                key-positions = <POS_RH_C2R4 POS_RH_C2R5>;
+                bindings = <&sk LG(LA(LC(LSHFT)))>;
+                layers = <0 1>;
+            };
+
+            // sticky "meh" modifiers (Alt + Ctrl + Shift) - TailorKey
+
+            combo_sticky_meh_rght_v1_TKZ {
+                timeout-ms = <50>;
+                key-positions = <POS_RH_C3R5 POS_RH_C3R4>;
+                bindings = <&sk LA(LC(LSHFT))>;
+                layers = <0 1>;
+            };
+
+            // toggle gaming layer - TailorKey
+
+            combo_gaming_toggle_v1_TKZ {
+                timeout-ms = <50>;
+                key-positions = <POS_LH_C2R5 POS_LH_C1R4 41 50>;
+                bindings = <&tog 17>;
+            };
+
+            // capslock when pressing both T1's - TailorKey
+
+            combo_capslock_v1_TKZ {
+                key-positions = <POS_LH_T1 POS_RH_T1>;
+                bindings = <&kp CAPS>;
+                layers = <0 1>;
+            };
+
+            // Alt Tab Switcher (Cursor Layer) - TailorKey
+
+            combo_tabswitch_gui_v1_TKZ {
+                key-positions = <POS_LH_T1 POS_LH_C1R4>;
+                bindings = <&mod_tab_chord_v2_TKZ 0 10>;
+                layers = <0 1>;
+            };
+
+            // Ctrl Tab Switcher (Cursor Layer) - TailorKey
+
+            combo_tabswitch_ctrl_v1_TKZ {
+                key-positions = <POS_LH_C2R5 POS_LH_C2R4>;
+                bindings = <&mod_tab_chord_v2_TKZ 0 10>;
+                layers = <0 1>;
+            };
+
+            // F1 combo for Go60 - TailorKey
+            // F10 combo for Go60 - TailorKey
+            // F11 combo for Go60 - TailorKey
+            // F12 combo for Go60 - TailorKey
+            // F2 combo for Go60 - TailorKey
+            // F3 combo for Go60 - TailorKey
+            // F4 combo for Go60 - TailorKey
+            // F5 combo for Go60 - TailorKey
+            // F6 combo for Go60 - TailorKey
+            // F7 combo for Go60 - TailorKey
+            // F8 combo for Go60 - TailorKey
+            // F9 combo for Go60 - TailorKeyleft_bracket {
+
+            bindings = <&kp LEFT_BRACKET>;
+            key-positions = <15 14>;
         };
 
-        // sticky "meh" modifiers (Alt + Ctrl + Shift) - TailorKey
-        combo_sticky_meh_rght_v1_TKZ {
-            timeout-ms = <50>;
-            key-positions = <POS_RH_C3R5 POS_RH_C3R4>;
-            bindings = <&sk LA(LC(LSHFT))>;
-            layers = <0 1>;
+        right_bracket {
+            bindings = <&kp RIGHT_BRACKET>;
+            key-positions = <20 21>;
         };
 
-        // toggle gaming layer - TailorKey
-        combo_gaming_toggle_v1_TKZ {
-            timeout-ms = <50>;
-            key-positions = <POS_LH_C2R5 POS_LH_C1R4 41 50>;
-            bindings = <&tog 17>;
+        left_paren {
+            bindings = <&kp LEFT_PARENTHESIS>;
+            key-positions = <16 15>;
         };
 
-        // capslock when pressing both T1's - TailorKey
-        combo_capslock_v1_TKZ {
-            key-positions = <POS_LH_T1 POS_RH_T1>;
-            bindings = <&kp CAPS>;
-            layers = <0 1>;
+        right_paren {
+            bindings = <&kp RIGHT_PARENTHESIS>;
+            key-positions = <20 19>;
         };
 
-        // Alt Tab Switcher (Cursor Layer) - TailorKey
-        combo_tabswitch_gui_v1_TKZ {
-            key-positions = <POS_LH_T1 POS_LH_C1R4>;
-            bindings = <&mod_tab_chord_v2_TKZ 0 10>;
-            layers = <0 1>;
+        left_brace {
+            bindings = <&kp LEFT_BRACE>;
+            key-positions = <14 13>;
         };
 
-        // Ctrl Tab Switcher (Cursor Layer) - TailorKey
-        combo_tabswitch_ctrl_v1_TKZ {
-            key-positions = <POS_LH_C2R5 POS_LH_C2R4>;
-            bindings = <&mod_tab_chord_v2_TKZ 0 10>;
-            layers = <0 1>;
+        right_brace {
+            bindings = <&kp RIGHT_BRACE>;
+            key-positions = <21 22>;
         };
 
-        // F1 combo for Go60 - TailorKey
-
-        // F10 combo for Go60 - TailorKey
-
-        // F11 combo for Go60 - TailorKey
-
-        // F12 combo for Go60 - TailorKey
-
-        // F2 combo for Go60 - TailorKey
-
-        // F3 combo for Go60 - TailorKey
-
-        // F4 combo for Go60 - TailorKey
-
-        // F5 combo for Go60 - TailorKey
-
-        // F6 combo for Go60 - TailorKey
-
-        // F7 combo for Go60 - TailorKey
-        combo_F7_cb_v1_TKZ {
-            key-positions = <POS_RH_C2R1 POS_RH_C2R2>;
-            bindings = <&kp F7>;
-            layers = <0 1 2 3 4 5 6 7 8 9>;
+        dash {
+            bindings = <&kp MINUS>;
+            key-positions = <39 40>;
         };
 
-        // F8 combo for Go60 - TailorKey
-        combo_F8_cb_v1_TKZ {
-            key-positions = <POS_RH_C3R1 POS_RH_C3R2>;
-            bindings = <&kp F8>;
-            layers = <0 1 2 3 4 5 6 7 8 9>;
+        equals {
+            bindings = <&kp EQUAL>;
+            key-positions = <44 43>;
         };
 
-        // F9 combo for Go60 - TailorKey
-        combo_F9_cb_v1_TKZ {
-            key-positions = <POS_RH_C4R1 POS_RH_C4R2>;
-            bindings = <&kp F9>;
-            layers = <0 1 2 3 4 5 6 7 8 9>;
-        };left_bracket {
-         bindings = <&kp LEFT_BRACKET>;
-         key-positions = <15 14>;};right_bracket {
-         bindings = <&kp RIGHT_BRACKET>;
-         key-positions = <20 21>;};left_paren {
-         bindings = <&kp LEFT_PARENTHESIS>;
-         key-positions = <16 15>;};right_paren {
-         bindings = <&kp RIGHT_PARENTHESIS>;
-         key-positions = <20 19>;};left_brace {
-         bindings = <&kp LEFT_BRACE>;
-         key-positions = <14 13>;};right_brace {
-         bindings = <&kp RIGHT_BRACE>;
-         key-positions = <21 22>;};dash {
-         bindings = <&kp MINUS>;
-         key-positions = <39 40>;};equals {
-         bindings = <&kp EQUAL>;
-         key-positions = <44 43>;};plus {
-         bindings = <&kp PLUS>;
-         key-positions = <45 44>;};underscore {
-         bindings = <&kp UNDER>;
-         key-positions = <38 39>;};
+        plus {
+            bindings = <&kp PLUS>;
+            key-positions = <45 44>;
+        };
+
+        underscore {
+            bindings = <&kp UNDER>;
+            key-positions = <38 39>;
+        };
     };
 };
 
 /* Automatically generated keymap */
+
 / {
     keymap {
         compatible = "zmk,keymap";
-
 
         layer_HRM_macOS {
             bindings = <
@@ -1277,9 +1525,8 @@ endif {
 &magic 18 0  &kp Z                            &kp X                          &kp C                           &kp D                            &kp V                                                                                                                                       &kp K   &kp H                             &kp COMMA                        &kp DOT                         &kp FSLH                          &kp MINUS
                                               &kp HOME                       &kp LEFT                        &kp RIGHT                                                                                                                                                                            &kp DOWN                          &kp UP_ARROW                     &kp END
                                                                                                                                                       &kp SPACE  &thumb_v2_TKZ 10 DEL  &thumb_v2_TKZ 11 LEFT_CONTROL  &thumb_v2_TKZ 12 ENTER  &thumb_v2_TKZ 13 BACKSPACE  &sk LEFT_SHIFT
->;
+            >;
         };
-
 
         layer_Autoshift {
             bindings = <
@@ -1289,7 +1536,7 @@ endif {
 &magic 18 0       &AS_v1_TKZ Z   &AS_v1_TKZ X   &AS_v1_TKZ C   &AS_v1_TKZ D   &AS_v1_TKZ V                                                   &AS_v1_TKZ K   &AS_v1_TKZ H   &AS_v1_TKZ COMMA  &AS_v1_TKZ DOT  &AS_v1_TKZ FSLH  &trans
                                  &trans         &trans         &trans                                                                                       &trans         &trans            &trans
                                                                                              &trans  &trans  &trans  &trans  &trans  &trans
->;
+            >;
         };
 
         layer_LeftPinky {
@@ -1300,7 +1547,7 @@ endif {
 &trans                             &HRM_left_pinky_tap_v1B_TKZ Z   &HRM_left_pinky_tap_v1B_TKZ X        &HRM_left_pinky_tap_v1B_TKZ C                 &HRM_left_pinky_tap_v1B_TKZ D          &HRM_left_pinky_tap_v1B_TKZ V                                                   &trans  &trans  &trans  &trans  &trans  &trans
                                                                    &trans                               &trans                                        &trans                                                                                                                         &trans  &trans  &trans
                                                                                                                                                                                                                              &trans  &trans  &trans  &trans  &trans  &trans
->;
+            >;
         };
 
         layer_LeftRingy {
@@ -1311,7 +1558,7 @@ endif {
 &trans                            &HRM_left_ring_tap_v1B_TKZ Z          &HRM_left_ring_tap_v1B_TKZ X   &HRM_left_ring_tap_v1B_TKZ C         &HRM_left_ring_tap_v1B_TKZ D          &HRM_left_ring_tap_v1B_TKZ V                                                   &trans  &trans  &trans  &trans  &trans  &trans
                                                                         &trans                         &trans                               &trans                                                                                                                       &trans  &trans  &trans
                                                                                                                                                                                                                  &trans  &trans  &trans  &trans  &trans  &trans
->;
+            >;
         };
 
         layer_LeftMiddy {
@@ -1322,7 +1569,7 @@ endif {
 &trans                             &HRM_left_middy_tap_v1B_TKZ Z          &HRM_left_middy_tap_v1B_TKZ X        &HRM_left_middy_tap_v1B_TKZ C   &HRM_left_middy_tap_v1B_TKZ D          &HRM_left_middy_tap_v1B_TKZ V                                                   &trans  &trans  &trans  &trans  &trans  &trans
                                                                           &trans                               &trans                          &trans                                                                                                                         &trans  &trans  &trans
                                                                                                                                                                                                                       &trans  &trans  &trans  &trans  &trans  &trans
->;
+            >;
         };
 
         layer_LeftIndex {
@@ -1333,7 +1580,7 @@ endif {
 &trans                             &HRM_left_index_tap_v1B_TKZ Z          &HRM_left_index_tap_v1B_TKZ X      &HRM_left_index_tap_v1B_TKZ C         &HRM_left_index_tap_v1B_TKZ D   &HRM_left_index_tap_v1B_TKZ V                                                   &trans  &trans  &trans  &trans  &trans  &trans
                                                                           &trans                             &trans                                &trans                                                                                                                  &trans  &trans  &trans
                                                                                                                                                                                                                    &trans  &trans  &trans  &trans  &trans  &trans
->;
+            >;
         };
 
         layer_RightPinky {
@@ -1344,7 +1591,7 @@ endif {
 &trans  &trans  &trans  &trans  &trans  &trans                                                  &HRM_right_pinky_tap_v1B_TKZ K   &HRM_right_pinky_tap_v1B_TKZ H          &HRM_right_pinky_tap_v1B_TKZ COMMA     &HRM_right_pinky_tap_v1B_TKZ DOT      &trans                                  &trans
                 &trans  &trans  &trans                                                                                           &trans                                  &trans                                 &trans
                                                 &trans  &trans  &trans  &trans  &trans  &trans
->;
+            >;
         };
 
         layer_RightRingy {
@@ -1355,7 +1602,7 @@ endif {
 &trans  &trans  &trans  &trans  &trans  &trans                                                  &HRM_right_ring_tap_v1B_TKZ K   &HRM_right_ring_tap_v1B_TKZ H          &HRM_right_ring_tap_v1B_TKZ COMMA     &HRM_right_ring_tap_v1B_TKZ DOT  &trans                                 &trans
                 &trans  &trans  &trans                                                                                          &trans                                 &trans                                &trans
                                                 &trans  &trans  &trans  &trans  &trans  &trans
->;
+            >;
         };
 
         layer_RightMiddy {
@@ -1366,7 +1613,7 @@ endif {
 &trans  &trans  &trans  &trans  &trans  &trans                                                  &HRM_right_middy_tap_v1B_TKZ K   &HRM_right_middy_tap_v1B_TKZ H          &HRM_right_middy_tap_v1B_TKZ COMMA  &HRM_right_middy_tap_v1B_TKZ DOT      &trans                                  &trans
                 &trans  &trans  &trans                                                                                           &trans                                  &trans                              &trans
                                                 &trans  &trans  &trans  &trans  &trans  &trans
->;
+            >;
         };
 
         layer_RightIndex {
@@ -1377,7 +1624,7 @@ endif {
 &trans  &trans  &trans  &trans  &trans  &trans                                                  &HRM_right_index_tap_v1B_TKZ K   &HRM_right_index_tap_v1B_TKZ H   &HRM_right_index_tap_v1B_TKZ COMMA     &HRM_right_index_tap_v1B_TKZ DOT      &trans                                  &trans
                 &trans  &trans  &trans                                                                                           &trans                           &trans                                 &trans
                                                 &trans  &trans  &trans  &trans  &trans  &trans
->;
+            >;
         };
 
         layer_Cursor {
@@ -1388,7 +1635,7 @@ endif {
 &kp LG(L)  &kp LG(A)  &cur_SELECT_LINE_macos_v1_TKZ  &cur_SELECT_WORD_macos_v1_TKZ  &kp LG(F)  &kp LG(V)                                                                                                              &kp LG(V)  &kp HOME        &kp PG_UP         &kp PG_DN        &kp END         &kp LG(L)
                       &none                          &kp LS(LG(G))                  &kp LG(G)                                                                                                                                    &kp LG(F)       &kp LS(LG(G))     &kp LG(G)
                                                                                                           &none  &none  &none  &cur_SELECT_NONE_v1_TKZ  &cur_EXTEND_LINE_macos_v1_TKZ  &cur_EXTEND_WORD_macos_v1_TKZ
->;
+            >;
         };
 
         layer_Keypad {
@@ -1399,7 +1646,7 @@ endif {
 &magic 18 0  &kp LG(Z)  &kp LG(X)  &kp LG(C)  &kp LG(V)  &kp LS(LG(V))                                                    &kp KP_N1  &kp KP_N2  &kp KP_N3   &kp KP_ENTER  &kp EQUAL        &to 0
                         &none      &trans     &trans                                                                                 &kp KP_N0  &kp KP_DOT  &kp KP_ENTER
                                                                         &none  &trans  &trans  &trans  &trans  &kp KP_N0
->;
+            >;
         };
 
         layer_Symbol {
@@ -1410,7 +1657,7 @@ endif {
 &kp LS(GRAVE)  &kp LS(COMMA)  &kp LS(BSLH)  &kp MINUS             &kp LS(DOT)    &kp FSLH                                                                 &kp SQT               &sk LSHFT  &sk LGUI     &sk LALT             &sk LCTRL  &none
                               &kp SQT       &kp LS(SINGLE_QUOTE)  &kp LS(EQUAL)                                                                                                 &kp BSLH   &kp LS(N7)   &symb_dotdot_v1_TKZ
                                                                                                &kp LS(N5)  &kp LS(SEMI)  &kp LS(N2)  &none  &none  &none
->;
+            >;
         };
 
         layer_Mouse {
@@ -1421,7 +1668,7 @@ endif {
 &none  &msc SCRL_DOWN  &mo 14          &mo 16          &mo 15           &msc SCRL_DOWN                                                                 &msc SCRL_DOWN  &msc SCRL_LEFT  &mmv MOVE_UP    &msc SCRL_RIGHT  &mkp RCLK  &mkp MB5
                        &kp LG(X)       &kp LG(C)       &kp LG(V)                                                                                                       &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT
                                                                                         &mkp LCLK  &mkp RCLK  &mkp MB4  &mkp LCLK  &tog 13  &mkp RCLK
->;
+            >;
         };
 
         layer_MouseSlow {
@@ -1432,7 +1679,7 @@ endif {
 &trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
                 &trans  &trans  &trans                                                                  &trans  &trans  &trans
                                                 &trans  &trans  &trans  &trans  &trans  &trans
->;
+            >;
         };
 
         layer_MouseFast {
@@ -1443,7 +1690,7 @@ endif {
 &trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
                 &trans  &trans  &trans                                                                  &trans  &trans  &trans
                                                 &trans  &trans  &trans  &trans  &trans  &trans
->;
+            >;
         };
 
         layer_MouseWarp {
@@ -1454,7 +1701,7 @@ endif {
 &trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
                 &trans  &trans  &trans                                                                  &trans  &trans  &trans
                                                 &trans  &trans  &trans  &trans  &trans  &trans
->;
+            >;
         };
 
         layer_Gaming {
@@ -1465,7 +1712,7 @@ endif {
 &kp B      &kp LCTRL  &kp Z     &kp X   &kp C   &kp V                                                                 &kp N   &kp M     &kp UP    &kp LS(COMMA)  &kp LS(DOT)  &kp LGUI
                       &kp LALT  &kp T   &kp G                                                                                 &kp LEFT  &kp DOWN  &kp RIGHT
                                                         &kp SPACE  &kp LSHFT  &kp LCTRL  &kp BSPC  &kp LALT  &kp RET
->;
+            >;
         };
 
         layer_Magic {
@@ -1476,8 +1723,7 @@ endif {
 &none          &none            &bt_0            &bt_1            &bt_2            &bt_3                                                      &none       &none         &none         &none  &none       &none
                                 &out OUT_USB     &none            &to 0                                                                                   &none         &none         &none
                                                                                                     &to 0  &none  &to 1  &none  &none  &none
->;
+            >;
         };
-
     };
 };
